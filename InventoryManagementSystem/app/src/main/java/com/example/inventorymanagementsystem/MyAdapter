@@ -14,50 +14,51 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
+    ArrayList<User2> userArrayList;
 
-    ArrayList<User> list;
-
-    public MyAdapter(Context context, ArrayList<User> list) {
+    public MyAdapter(Context context, ArrayList<User2> userArrayList) {
         this.context = context;
-        this.list = list;
+        this.userArrayList = userArrayList;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
+    public MyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View v = LayoutInflater.from(context).inflate(R.layout.item,parent, false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
 
-        User user = list.get(position);
-        holder.fullName.setText(user.getFirstName());
-        holder.section.setText(user.getSection());
-        holder.laptop.setText(user.getLaptop());
-        holder.email.setText(user.getEmail());
+        User2 user = userArrayList.get(position);
+
+        holder.firstName.setText(user.firstName);
+        holder.section.setText(user.section);
+        holder.laptop.setText(user.laptop);
+        holder.serialNumber.setText(String.valueOf(user.serialNumber));
+        holder.email.setText(user.email);
 
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return userArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView fullName, section, laptop, serialNumber, email;
+        TextView firstName, section, laptop, serialNumber, email;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            fullName = itemView.findViewById(R.id.tvFullName);
-            section = itemView.findViewById(R.id.tvSection);
-            laptop = itemView.findViewById(R.id.tvLaptop);
-            serialNumber = itemView.findViewById(R.id.tvSerialNumber);
-            email = itemView.findViewById(R.id.tvEmail);
+            firstName = itemView.findViewById(R.id.tvfirstName);
+            section = itemView.findViewById(R.id.tvsection);
+            laptop = itemView.findViewById(R.id.tvlaptop);
+            serialNumber = itemView.findViewById(R.id.tvserialNumber);
+            email = itemView.findViewById(R.id.tvemail);
         }
     }
-
 }
